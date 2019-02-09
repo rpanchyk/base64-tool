@@ -6,8 +6,6 @@ import (
 )
 
 func main() {
-	//http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
-
 	router := httprouter.New()
 
 	router.GET("/", serveIndex)
