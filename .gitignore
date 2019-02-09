@@ -3,9 +3,9 @@
 *.iml
 
 # Build
-build
-debug
+/build
+/debug
 
 # Dep
-vendor
+/vendor
 Gopkg.lock
