@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/golang/glog"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
 )
@@ -15,7 +16,9 @@ func main() {
 	router.POST("/api", serveEncode)
 	router.GET("/api", serveDecode)
 
-	http.ListenAndServe(":8080", router)
+	if err := http.ListenAndServe(":8080", router); err != nil {
+		glog.Errorf("Error listening for TCP connections", err)
+	}
 }
 
 func serveIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
