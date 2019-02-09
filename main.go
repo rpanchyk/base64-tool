@@ -1,6 +1,7 @@
 package main
 
 import (
+	"base64-tool/handler"
 	"github.com/golang/glog"
 	"github.com/julienschmidt/httprouter"
 	"net/http"
@@ -8,29 +9,16 @@ import (
 
 func main() {
 	router := httprouter.New()
+	router.GET("/", handler.Index())
+	router.POST("/api", handler.Encode())
+	router.GET("/api", handler.Decode())
 
-	// UI
-	router.GET("/", serveIndex)
-	router.ServeFiles("/static/*filepath", http.Dir("static"))
-	// API
-	router.POST("/api", serveEncode)
-	router.GET("/api", serveDecode)
+	static := httprouter.New()
+	static.ServeFiles("/*filepath", http.Dir("static"))
+	router.NotFound = static
 
-	if err := http.ListenAndServe(":8080", router); err != nil {
-		glog.Errorf("Error listening for TCP connections", err)
+	port := "8080"
+	if err := http.ListenAndServe(":"+port, router); err != nil {
+		glog.Errorf("Error listening for TCP connections on port %s: %v", port, err)
 	}
-}
-
-func serveIndex(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	http.ServeFile(w, r, "static/index.html")
-}
-
-func serveEncode(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	responseBytes := []byte("{\"key\":\"value\"}")
-	w.Write(responseBytes)
-}
-
-func serveDecode(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	responseBytes := []byte("{\"key\":\"value\"}")
-	w.Write(responseBytes)
 }
