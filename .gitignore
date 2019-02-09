@@ -1,0 +1,10 @@
+# IntelliJ IDEA
+.idea
+*.iml
+
+# Build
+build
+debug
+
+# Dep
+vendor
