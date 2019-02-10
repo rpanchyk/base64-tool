@@ -8,7 +8,10 @@ import (
 func Encode() func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		responseBytes := []byte("{\"key\":\"value\"}")
+
+		str := r.FormValue("s")
+
+		responseBytes := []byte("{\"key\":\"value=" + str + "\"}")
 		w.Write(responseBytes)
 	}
 }
