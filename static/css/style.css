@@ -46,21 +46,6 @@ form {
     margin-top: 10px;
 }
 
-label {
-}
-
-small {
-}
-
-textarea {
-}
-
-input[type=text], input[type=number] {
-}
-
-input[type=submit] {
-}
-
 .form-col-1 {
     min-width: 280px;
 }
@@ -69,33 +54,7 @@ input[type=submit] {
     min-width: 200px;
 }
 
-/*Json*/
-pre {
-    padding: 5px;
-    margin: 0;
-}
-
-.string {
-    color: green;
-}
-
-.number {
-    color: magenta;
-}
-
-.boolean {
-    color: blue;
-}
-
-.null {
-    color: pink;
-}
-
-.key {
-    color: red;
-}
-
-.encoder_input {
+.xcoder_input {
     margin: 0 15px;
     max-width: 600px;
 }
@@ -109,6 +68,13 @@ pre {
     background-color: #f8d7da !important;
     border: 1px solid red;
     color: darkred;
+    resize: none;
+}
+
+.result-value {
+    background-color: #c3e6cb !important;
+    border: 1px solid green;
+    color: darkgreen;
     resize: none;
 }
 
@@ -129,6 +95,7 @@ pre {
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
     right: 0;
+    margin-top: -42px;
     /*-webkit-user-select: none;*/
     /*-moz-user-select: none;*/
     /*-ms-user-select: none;*/
@@ -151,7 +118,7 @@ pre {
     line-height: 24px;
 }
 
-/*For other devices*/
+/*Other devices*/
 @media (max-width: 370px) {
     header {
         font-size: large;

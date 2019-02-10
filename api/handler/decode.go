@@ -31,6 +31,8 @@ func Decode() func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) 
 			err := result.Error
 			if err != nil {
 				glog.Errorf("Error decoding: %v", err)
+
+				w.WriteHeader(http.StatusBadRequest)
 				response.Error = err.Error()
 			} else {
 				response.Value = result.Value
