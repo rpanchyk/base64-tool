@@ -9,7 +9,8 @@ body {
 }
 
 header {
-    margin: 10px auto;
+    margin-top: 5px;
+    margin-bottom: 15px;
     font-size: x-large;
     font-weight: bold;
 }
