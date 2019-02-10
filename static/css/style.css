@@ -1,0 +1,159 @@
+/*Page*/
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 80px;
+}
+
+header {
+    margin: 10px auto;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+header a {
+    text-decoration: none;
+    color: #555555;
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    white-space: nowrap;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: #555555;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 54px;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+}
+
+footer a:hover {
+    text-decoration: none;
+}
+
+/*Form*/
+form {
+    margin-top: 10px;
+}
+
+label {
+}
+
+small {
+}
+
+textarea {
+}
+
+input[type=text], input[type=number] {
+}
+
+input[type=submit] {
+}
+
+.form-col-1 {
+    min-width: 280px;
+}
+
+.form-col-2 {
+    min-width: 200px;
+}
+
+/*Json*/
+pre {
+    padding: 5px;
+    margin: 0;
+}
+
+.string {
+    color: green;
+}
+
+.number {
+    color: magenta;
+}
+
+.boolean {
+    color: blue;
+}
+
+.null {
+    color: pink;
+}
+
+.key {
+    color: red;
+}
+
+.encoder_input {
+    margin: 0 15px;
+    max-width: 600px;
+}
+
+.result {
+    position: relative;
+    max-width: 600px;
+}
+
+.result-error {
+    background-color: #f8d7da !important;
+    border: 1px solid red;
+    color: darkred;
+    resize: none;
+}
+
+/*Clipboard*/
+.btn-clipboard {
+    position: absolute;
+    display: inline-block;
+    padding: 6px 12px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #eee;
+    background-image: linear-gradient(#fcfcfc, #eee);
+    border: 1px solid #d5d5d5;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    right: 0;
+    /*-webkit-user-select: none;*/
+    /*-moz-user-select: none;*/
+    /*-ms-user-select: none;*/
+    /*user-select: none;*/
+    /*-webkit-appearance: none;*/
+}
+
+.btn-clipboard:focus:hover {
+    background-color: #51a7e8;
+}
+
+.btn-clipboard:hover {
+    background-color: #eee;
+    background-image: linear-gradient(#eee, #fcfcfc);
+}
+
+.clippy {
+    margin-top: -5px;
+    position: relative;
+    line-height: 24px;
+}
+
+/*For other devices*/
+@media (max-width: 370px) {
+    header {
+        font-size: large;
+    }
+}

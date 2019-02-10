@@ -5,6 +5,7 @@
 - https://www.base64encode.org
 
 ## Learn
+- https://gobyexample.com/
 - https://eager.io/blog/go-and-json/
 
 ## Issues

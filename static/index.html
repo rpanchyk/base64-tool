@@ -23,7 +23,73 @@
 </head>
 <body>
 
-index
+<header>
+    <a href="/" class="title"><img src="images/logo.png" alt="Base64"/>Base64 Tool</a>
+</header>
+
+<div class="container-fluid">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" id="nav-encoder-tab" data-toggle="tab" href="#nav-encoder" role="tab"
+               aria-controls="nav-encoder" aria-selected="true">Encoder</a>
+            <a class="nav-item nav-link" id="nav-decoder-tab" data-toggle="tab" href="#nav-decoder" role="tab"
+               aria-controls="nav-decoder" aria-selected="false">Decoder</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-encoder" role="tabpanel" aria-labelledby="nav-encoder-tab">
+            <form id="encoder_form">
+                <div class="form-group row">
+                    <label for="raw_string" class="col-sm-auto col-form-label form-col-1">
+                        Raw String
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <textarea id="raw_string" rows="8" class="form-control encoder_input"
+                              placeholder="Paste here..." required></textarea>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-auto">
+                        <input type="submit" value="Encode" class="form-control btn btn-outline-primary"/>
+                    </div>
+                </div>
+                <div id="encoder_result" class="result"></div>
+                <div id="encoder_error" class="result"></div>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="nav-decoder" role="tabpanel" aria-labelledby="nav-decoder-tab">
+            <form id="decoder_form">
+                <div class="form-group row">
+                    <label for="encoded_string" class="col-sm-auto col-form-label form-col-1">
+                        Encoded String
+                    </label>
+                </div>
+                <div class="form-group row">
+                    <textarea id="encoded_string" rows="8" class="form-control encoder_input"
+                              placeholder="Paste here..." required></textarea>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-auto">
+                        <input type="submit" value="Decode" class="form-control btn btn-outline-primary"/>
+                    </div>
+                </div>
+                <div id="decoder_result" class="result"></div>
+                <div id="decoder_error" class="result"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <small class="form-text text-muted">
+        Designed with &hearts; by <a href="https://github.com/acidtron" target="_blank">acidtron</a>
+        and <a href="https://github.com/gfoal" target="_blank">gfoal</a>
+        &copy; <a href="https://tools.firetrot.com" target="_blank">FireTrot</a>
+    </small>
+    <small class="form-text text-muted">
+        Inspired by <a href="https://www.decodeconsentstring.com/" target="_blank">Decode Consent String</a>
+    </small>
+</footer>
 
 </body>
 </html>
