@@ -10,8 +10,8 @@ import (
 func main() {
 	router := httprouter.New()
 	router.GET("/", handler.Index())
-	router.POST("/api", handler.Encode())
-	router.GET("/api", handler.Decode())
+	router.POST("/api/encode", handler.Encode())
+	router.POST("/api/decode", handler.Decode())
 
 	static := httprouter.New()
 	static.ServeFiles("/*filepath", http.Dir("static"))

@@ -1,3 +1,8 @@
 #!/bin/sh
 
-curl -X GET http://localhost:8080/api?s=dGVzdA%3D%3D
+curl -X POST http://localhost:8080/api/decode \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "value": "dGVzdA=="
+}
+'
