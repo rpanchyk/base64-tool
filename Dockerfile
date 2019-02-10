@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:latest
 MAINTAINER FireTrot <admin@firetrot.com>
 
 WORKDIR /go/src/base64-tool/
