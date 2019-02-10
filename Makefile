@@ -1,13 +1,14 @@
 # Makefile
 
-all:
+.PHONY: help deps build image
+
+help:
 	@echo ""
+	@echo "  help: show this help"
 	@echo "  deps: get dependencies"
 	@echo "  build: build go binary"
 	@echo "  image: build docker image"
 	@echo ""
-
-.PHONY: deps build image
 
 deps:
 	dep ensure -update
