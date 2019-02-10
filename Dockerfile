@@ -13,11 +13,12 @@ COPY ./ ./
 RUN dep ensure
 RUN go build .
 
-WORKDIR /usr/local/bin/
-RUN cp /go/src/base64-tool/base64-tool .
-RUN cp -r /go/src/base64-tool/static static/
+#WORKDIR /usr/local/bin/
+#RUN cp /go/src/base64-tool/base64-tool .
+#RUN cp -r /go/src/base64-tool/static static/
 
 EXPOSE 8080
 
+#ENTRYPOINT ["/usr/local/bin/base64-tool"]
 ENTRYPOINT ["/go/src/base64-tool/base64-tool"]
 CMD ["-v", "1", "-logtostderr"]
