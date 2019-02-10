@@ -5,6 +5,7 @@
 # Build
 /build
 /debug
+/base64-tool
 
 # Dep
 /vendor
