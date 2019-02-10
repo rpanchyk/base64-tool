@@ -9,3 +9,4 @@
 
 ## Issues
 - https://github.com/julienschmidt/httprouter/issues/7
+- https://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers
