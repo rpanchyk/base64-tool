@@ -170,14 +170,16 @@ function b64dec(str) {
 
 function encodeHashTag(formData) {
     let hashTagData = {};
-    hashTagData['tab'] = Cookies.get('navTabState'); // === 'encoder' ? 'encoder_form' : 'decoder_form';
+    hashTagData['tab'] = Cookies.get('navTabState');
     hashTagData['form'] = formData;
     console.log('hashTag encoded json:', hashTagData);
 
     let hashTag = JSON.stringify(hashTagData);
     console.log('hashTag decoded string:', hashTag);
 
-    return encodeURI(b64enc(hashTag));
+    let result = encodeURI(b64enc(hashTag));
+    // limit max anchor tag length
+    return result.length < 10000 ? result : '';
 }
 
 function decodeHashTag(str) {
