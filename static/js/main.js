@@ -28,7 +28,7 @@ $(function () {
                     '<button class="btn-clipboard" title="Copy to clipboard" onclick="copyToClipboard(\'' + data['value'] + '\'); $(this).tooltip(\'dispose\');$(this).attr(\'title\',\'Copied!\');$(this).tooltip(\'show\');return false;" data-toggle="tooltip-encoder" data-placement="left">'
                     + '<img class="clippy" src="images/clippy.svg" width="14"/>'
                     + '</button>'
-                    + '<textarea class="form-control p-2 mb-2 rounded-1 result-value" disabled>' + data['value'] + '</textarea>');
+                    + '<textarea class="form-control p-2 mb-2 rounded-1 result-value" readonly>' + data['value'] + '</textarea>');
 
                 textAreaAdjust($('#encoder_result textarea'));
 
@@ -44,7 +44,7 @@ $(function () {
                 let data = error.responseJSON;
                 console.log(data);
 
-                $('#encoder_error').html('<textarea class="form-control p-2 mb-2 rounded-1 result-error" disabled>' + data['error'] + '</textarea>');
+                $('#encoder_error').html('<textarea class="form-control p-2 mb-2 rounded-1 result-error" readonly>' + data['error'] + '</textarea>');
                 textAreaAdjust($('#encoder_error textarea'));
             }
         });
@@ -77,7 +77,7 @@ $(function () {
                     '<button class="btn-clipboard" title="Copy to clipboard" onclick="copyToClipboard(\'' + data['value'] + '\'); $(this).tooltip(\'dispose\');$(this).attr(\'title\',\'Copied!\');$(this).tooltip(\'show\');return false;" data-toggle="tooltip-decoder" data-placement="left">'
                     + '<img class="clippy" src="images/clippy.svg" width="14"/>'
                     + '</button>'
-                    + '<textarea class="form-control p-2 mb-2 rounded-1 result-value" disabled>' + data['value'] + '</textarea>');
+                    + '<textarea class="form-control p-2 mb-2 rounded-1 result-value" readonly>' + data['value'] + '</textarea>');
 
                 textAreaAdjust($('#decoder_result textarea'));
 
@@ -93,7 +93,7 @@ $(function () {
                 let data = error.responseJSON;
                 console.log(data);
 
-                $('#decoder_error').html('<textarea class="form-control p-2 mb-2 rounded-1 result-error" disabled>' + data.error + '</textarea>');
+                $('#decoder_error').html('<textarea class="form-control p-2 mb-2 rounded-1 result-error" readonly>' + data.error + '</textarea>');
                 textAreaAdjust($('#decoder_error textarea'));
             }
         });
