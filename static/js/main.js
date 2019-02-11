@@ -1,16 +1,22 @@
 $(function () {
     setActiveTab();
 
+    fillForm();
+
     // encode
     $('#encoder_form').submit(function (event) {
         event.preventDefault();
 
-        var formData = JSON.stringify(serializeForm($(this)));
+        let formData = serializeForm($(this));
+        let formDataAsString = JSON.stringify(formData);
+
+        location.hash = encodeHashTag(formData);
+
         $.ajax({
             type: 'POST',
             url: '/api/encode',
             dataType: "json",
-            data: formData,
+            data: formDataAsString,
             beforeSend: function (xhr) {
                 $('#encoder_result').html('');
                 $('#encoder_error').html('');
@@ -29,13 +35,13 @@ $(function () {
                 $('[data-toggle="tooltip-encoder"]').tooltip();
 
                 // fill decoder field to be kind
-                var element = $('#encoded_string');
+                let element = $('#encoded_string');
                 if ($.trim(element.val()) === '') {
                     element.val(data['value']);
                 }
             },
             error: function (error) {
-                var data = error.responseJSON;
+                let data = error.responseJSON;
                 console.log(data);
 
                 $('#encoder_error').html('<textarea class="form-control p-2 mb-2 rounded-1 result-error" disabled>' + data['error'] + '</textarea>');
@@ -50,12 +56,16 @@ $(function () {
     $('#decoder_form').submit(function (event) {
         event.preventDefault();
 
-        var formData = JSON.stringify(serializeForm($(this)));
+        let formData = serializeForm($(this));
+        let formDataAsString = JSON.stringify(formData);
+
+        location.hash = encodeHashTag(formData);
+
         $.ajax({
             type: 'POST',
             url: '/api/decode',
             dataType: "json",
-            data: formData,
+            data: formDataAsString,
             beforeSend: function (xhr) {
                 $('#decoder_result').html('');
                 $('#decoder_error').html('');
@@ -74,13 +84,13 @@ $(function () {
                 $('[data-toggle="tooltip-decoder"]').tooltip();
 
                 // fill encoder field to be kind
-                var element = $('#decoded_string');
+                let element = $('#decoded_string');
                 if ($.trim(element.val()) === '') {
                     element.val(data['value']);
                 }
             },
             error: function (error) {
-                var data = error.responseJSON;
+                let data = error.responseJSON;
                 console.log(data);
 
                 $('#decoder_error').html('<textarea class="form-control p-2 mb-2 rounded-1 result-error" disabled>' + data.error + '</textarea>');
@@ -93,8 +103,8 @@ $(function () {
 });
 
 function setActiveTab() {
-    var encoderTab = $('#nav-encoder-tab');
-    var decoderTab = $('#nav-decoder-tab');
+    let encoderTab = $('#nav-encoder-tab');
+    let decoderTab = $('#nav-decoder-tab');
 
     encoderTab.click(function () {
         // console.log('nav-encoder-tab');
@@ -105,7 +115,7 @@ function setActiveTab() {
         Cookies.set('navTabState', 'decoder', {expires: 365});
     });
 
-    var navTabState = Cookies.get('navTabState');
+    let navTabState = Cookies.get('navTabState');
     // console.log('navTabState: ' + navTabState);
 
     if (navTabState === 'decoder') {
@@ -116,7 +126,7 @@ function setActiveTab() {
 }
 
 function serializeForm(form) {
-    var result = {};
+    let result = {};
     $.map(form.serializeArray(), function (n) {
         result[n['name']] = n['value'];
     });
@@ -138,9 +148,62 @@ function textAreaAdjust(o) {
 }
 
 function copyToClipboard(str) {
-    var $temp = $("<input>");
+    let $temp = $("<input>");
     $("body").append($temp);
     $temp.val(str).select();
     document.execCommand("copy");
     $temp.remove();
+}
+
+function b64enc(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+        function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+        }));
+}
+
+function b64dec(str) {
+    return decodeURIComponent(atob(str).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+}
+
+function encodeHashTag(formData) {
+    let hashTagData = {};
+    hashTagData['tab'] = Cookies.get('navTabState'); // === 'encoder' ? 'encoder_form' : 'decoder_form';
+    hashTagData['form'] = formData;
+    console.log('hashTag encoded json:', hashTagData);
+
+    let hashTag = JSON.stringify(hashTagData);
+    console.log('hashTag decoded string:', hashTag);
+
+    return encodeURI(b64enc(hashTag));
+}
+
+function decodeHashTag(str) {
+    let hashTag = decodeURI(b64dec(str));
+    console.log('hashTag decoded string:', hashTag);
+
+    let hashTagData = JSON.parse(hashTag);
+    console.log('hashTag decoded json:', hashTagData);
+
+    return hashTagData;
+}
+
+function fillForm() {
+    let hashTag = location.hash;
+    if (hashTag === '') {
+        return;
+    }
+    console.log('hashTag:', hashTag);
+
+    let hashTagData = decodeHashTag(hashTag.replace('#', ''));
+
+    // activate tab
+    Cookies.set('navTabState', hashTagData['tab'], {expires: 365});
+    setActiveTab();
+
+    // fill form
+    let formId = hashTagData['tab'] === 'encoder' ? 'encoder_form' : 'decoder_form';
+    $('#' + formId).populate(hashTagData['form']);
 }
