@@ -72,11 +72,23 @@ form {
     resize: none;
 }
 
+.result-error:focus {
+    outline: none !important;
+    border: 1px solid red !important;
+    box-shadow: none !important;
+}
+
 .result-value {
     background-color: #c3e6cb !important;
     border: 1px solid green;
     color: darkgreen;
     resize: none;
+}
+
+.result-value:focus {
+    outline: none !important;
+    border: 1px solid green !important;
+    box-shadow: none !important;
 }
 
 /*Clipboard*/
